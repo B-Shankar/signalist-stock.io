@@ -1,4 +1,4 @@
-// TradingViewWidget.jsx
+// TradingViewWidget.tsx
 'use client';
 
 import React, { memo } from 'react';
