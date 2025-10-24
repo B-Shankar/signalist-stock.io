@@ -12,7 +12,7 @@ const Layout = ({ children } : { children : React.ReactNode }) => {
         <main className="auth-layout">
             <section className="auth-left-section scrollbar-hide-default">
                 <Link href='/' className="auth-logo">
-                    <Image src="assets/icons/logo.svg" alt="Signalist - Stock.IO Logo" width={140} height={32} className="h-8 w-auto" />
+                    <Image src="/assets/icons/logo.svg" alt="Signalist - Stock.IO Logo" width={140} height={32} className="h-8 w-auto" />
                 </Link>
                 <div className="pb-6 lg:pb-8 flex-1">{children}</div>
             </section>
@@ -32,7 +32,7 @@ const Layout = ({ children } : { children : React.ReactNode }) => {
                                 </div>
                                 <div className="flex items-center gap-0.5">
                                     {[1, 2, 3, 4, 5].map((star) => (
-                                        <Image src="assets/icons/star.svg" alt="Star" key={star} width={20} height={20}
+                                        <Image src="/assets/icons/star.svg" alt="Star" key={star} width={20} height={20}
                                                className="h-5 w-5"/>
                                     ))}
                                 </div>
@@ -50,7 +50,7 @@ const Layout = ({ children } : { children : React.ReactNode }) => {
                                 </div>
                                 <div className="flex items-center gap-0.5">
                                     {[1, 2, 3, 4, 5].map((star) => (
-                                        <Image src="assets/icons/star.svg" alt="Star" key={star} width={20} height={20}
+                                        <Image src="/assets/icons/star.svg" alt="Star" key={star} width={20} height={20}
                                                                                                  className="h-5 w-5"/>
                                     ) )}
                                 </div>
