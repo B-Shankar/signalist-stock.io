@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/scripts/update-env.js">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/scripts/update-env.js" />
+              <option name="updatedContent" value="const fs = require('fs');&#10;const envPath = 'c:\\Users\\B.Shankar\\Desktop\\Learn\\next_js\\stock.io\\.env';&#10;let content = '';&#10;if (fs.existsSync(envPath)) {&#10;  content = fs.readFileSync(envPath, 'utf8');&#10;}&#10;const newLine = 'MONGODB_URI=mongodb+srv://B-Shankar:%40Cijnbtibo4567890%21@cluster0.smjti0z.mongodb.net/?appName=Cluster0';&#10;if (/^MONGODB_URI=/m.test(content)) {&#10;  content = content.replace(/^MONGODB_URI=.*$/m, newLine);&#10;} else {&#10;  if (content &amp;&amp; !content.endsWith('\n')) content += '\n';&#10;  content += newLine + '\n';&#10;}&#10;fs.writeFileSync(envPath, content, 'utf8');&#10;console.log('Updated .env at', envPath);&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
