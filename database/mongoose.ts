@@ -31,7 +31,8 @@ export const connectToDatabase = async () : Promise<typeof import("mongoose") | 
         throw e;
     }
 
-    console.log(`Connected to Database ${process.env.NODE_ENV} to MONGODB_URI`);
+    console.log(`[mongoose] Connected to database (env: ${process.env.NODE_ENV || 'development'})`);
+    return cached.conn;
 }
 
 /**
