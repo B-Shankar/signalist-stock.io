@@ -15,7 +15,7 @@ if(!cached) {
     cached = global.mongooseCache = { conn: null, promise: null };
 }
 
-export const connectToDatabase = async () : Promise<typeof import("mongoose") | undefined>  => {
+export const connectToDatabase = async (): Promise<typeof mongoose>  => {
     if(!MONGODB_URI) throw new Error("MongoDB URI is missing")
 
     if(cached.conn) return cached.conn;
