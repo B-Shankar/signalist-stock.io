@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest) {
 
     // Check cookie presence - prevents obviously unauthorized users
     if (!sessionCookie) {
-        return NextResponse.redirect(new URL("/", request.url));
+        return NextResponse.redirect(new URL("/sign-in", request.url));
     }
 
     return NextResponse.next();
