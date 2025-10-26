@@ -13,25 +13,29 @@ import {Button} from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {LogOut} from "lucide-react";
 import NavItems from "@/components/NavItems";
+import {signOut} from "@/lib/actions/auth.actions";
 
-const UserDropdown = () => {
+const UserDropdown = ({ user } : { user : User}) => {
 
     const router = useRouter();
 
-    const handleSignOut = () => {
-        router.push("/sign-in");
+    const handleSignOut = async () => {
+        try {
+            await signOut();
+            router.replace("/sign-in");
+        } catch (error) {
+            console.error("Sign out failed:", error);
+        }
     }
-
-    const user = { name: 'John Doe', email: 'john.doe@gmail.com' }
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-3 text-gray-4 hover:text-yellow-500">
+                <Button variant="ghost" className="flex items-center gap-3 text-gray-400 hover:text-yellow-500">
                     <Avatar className="h-8 w-8">
                         <AvatarImage src="https://avatars.githubusercontent.com/u/149028707?s=96&v=4" />
                         <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
-                            {user.name[0]}
+                            {(user.name?.[0] ?? '?').toUpperCase()}
                         </AvatarFallback>
                     </Avatar>
                     <div className="hidden md:flex flex-col items-start">
