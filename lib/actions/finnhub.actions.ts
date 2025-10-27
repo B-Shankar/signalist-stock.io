@@ -7,12 +7,15 @@ import { cache } from 'react';
 const FINNHUB_BASE_URL = 'https://finnhub.io/api/v1';
 const NEXT_PUBLIC_FINNHUB_API_KEY = process.env.NEXT_PUBLIC_FINNHUB_API_KEY ?? '';
 
-async function fetchJSON<T>(url: string, revalidateSeconds?: number): Promise<T> {
+async function fetchJSON<T>(url: string, revalidateSeconds?: number, timeoutMs = 10_000): Promise<T> {
     const options: RequestInit & { next?: { revalidate?: number } } = revalidateSeconds
         ? { cache: 'force-cache', next: { revalidate: revalidateSeconds } }
         : { cache: 'no-store' };
 
-    const res = await fetch(url, options);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+    const res = await fetch(url, { ...options, signal: controller.signal });
+    clearTimeout(timeout);
     if (!res.ok) {
         const text = await res.text().catch(() => '');
         throw new Error(`Fetch failed ${res.status}: ${text}`);
@@ -157,9 +160,8 @@ export const searchStocks = cache(async (query?: string): Promise<StockWithWatch
             .map((r) => {
                 const upper = (r.symbol || '').toUpperCase();
                 const name = r.description || upper;
-                const exchangeFromDisplay = (r.displaySymbol as string | undefined) || undefined;
                 const exchangeFromProfile = (r as any).__exchange as string | undefined;
-                const exchange = exchangeFromDisplay || exchangeFromProfile || 'US';
+                const exchange = exchangeFromProfile || 'US';
                 const type = r.type || 'Stock';
                 const item: StockWithWatchlistStatus = {
                     symbol: upper,
