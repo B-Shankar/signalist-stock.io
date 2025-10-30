@@ -51,7 +51,9 @@ const UserDropdown = ({ user, initialStocks } : { user : User, initialStocks : S
                         <Avatar className="h-10 w-10">
                             {/*<AvatarImage src="https://avatars.githubusercontent.com/u/149028707?s=96&v=4" />*/}
                             <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
-                                {user.name[0]}
+                            <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
+                                {(user.name?.[0] ?? '?').toUpperCase()}
+                            </AvatarFallback>
                             </AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col">
